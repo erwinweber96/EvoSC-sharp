@@ -1,0 +1,6 @@
+[info]
+name = "GeardownModule"
+title = "GeardownModule"
+summary = "Geardown.gg integration."
+version = "1.0.0"
+author = "erwinweber"

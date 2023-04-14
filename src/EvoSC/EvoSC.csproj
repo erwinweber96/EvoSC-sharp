@@ -22,6 +22,7 @@
       <ProjectReference Include="..\Modules\MatchManagerModule\MatchManagerModule.csproj" />
       <ProjectReference Include="..\Modules\Player\Player.csproj" />
       <ProjectReference Include="..\Modules\PlayerRecords\PlayerRecords.csproj" />
+      <ProjectReference Include="..\Modules\GeardownModule\GeardownModule.csproj" />
     </ItemGroup>
 
     <ItemGroup>

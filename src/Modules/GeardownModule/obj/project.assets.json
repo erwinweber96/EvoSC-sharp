@@ -4329,19 +4329,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\erwin\\.nuget\\packages\\": {}
+    "/root/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "J:\\Dev\\EvoSC-sharp\\src\\Modules\\GeardownModule\\GeardownModule.csproj",
+      "projectUniqueName": "/var/containers/EvoSC-sharp/src/Modules/GeardownModule/GeardownModule.csproj",
       "projectName": "GeardownModule",
-      "projectPath": "J:\\Dev\\EvoSC-sharp\\src\\Modules\\GeardownModule\\GeardownModule.csproj",
-      "packagesPath": "C:\\Users\\erwin\\.nuget\\packages\\",
-      "outputPath": "J:\\Dev\\EvoSC-sharp\\src\\Modules\\GeardownModule\\obj\\",
+      "projectPath": "/var/containers/EvoSC-sharp/src/Modules/GeardownModule/GeardownModule.csproj",
+      "packagesPath": "/root/.nuget/packages/",
+      "outputPath": "/var/containers/EvoSC-sharp/src/Modules/GeardownModule/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\erwin\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/root/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -4353,11 +4353,11 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "J:\\Dev\\EvoSC-sharp\\src\\EvoSC.Modules\\EvoSC.Modules.csproj": {
-              "projectPath": "J:\\Dev\\EvoSC-sharp\\src\\EvoSC.Modules\\EvoSC.Modules.csproj"
+            "/var/containers/EvoSC-sharp/src/EvoSC.Modules/EvoSC.Modules.csproj": {
+              "projectPath": "/var/containers/EvoSC-sharp/src/EvoSC.Modules/EvoSC.Modules.csproj"
             },
-            "J:\\Dev\\EvoSC-sharp\\src\\Modules\\MapsModule\\MapsModule.csproj": {
-              "projectPath": "J:\\Dev\\EvoSC-sharp\\src\\Modules\\MapsModule\\MapsModule.csproj"
+            "/var/containers/EvoSC-sharp/src/Modules/MapsModule/MapsModule.csproj": {
+              "projectPath": "/var/containers/EvoSC-sharp/src/Modules/MapsModule/MapsModule.csproj"
             }
           }
         }
@@ -4387,7 +4387,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
       }
     }
   }

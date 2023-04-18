@@ -4,17 +4,17 @@
     <RestoreSuccess Condition=" '$(RestoreSuccess)' == '' ">True</RestoreSuccess>
     <RestoreTool Condition=" '$(RestoreTool)' == '' ">NuGet</RestoreTool>
     <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">$(MSBuildThisFileDirectory)project.assets.json</ProjectAssetsFile>
-    <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">$(UserProfile)\.nuget\packages\</NuGetPackageRoot>
-    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">C:\Users\erwin\.nuget\packages\</NuGetPackageFolders>
+    <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">/root/.nuget/packages/</NuGetPackageRoot>
+    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">/root/.nuget/packages/</NuGetPackageFolders>
     <NuGetProjectStyle Condition=" '$(NuGetProjectStyle)' == '' ">PackageReference</NuGetProjectStyle>
     <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">6.5.0</NuGetToolVersion>
   </PropertyGroup>
   <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <SourceRoot Include="C:\Users\erwin\.nuget\packages\" />
+    <SourceRoot Include="/root/.nuget/packages/" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <Pkglinq2db_SQLite Condition=" '$(Pkglinq2db_SQLite)' == '' ">C:\Users\erwin\.nuget\packages\linq2db.sqlite\4.4.0</Pkglinq2db_SQLite>
-    <Pkglinq2db_PostgreSQL Condition=" '$(Pkglinq2db_PostgreSQL)' == '' ">C:\Users\erwin\.nuget\packages\linq2db.postgresql\4.4.0</Pkglinq2db_PostgreSQL>
-    <Pkglinq2db_MySql Condition=" '$(Pkglinq2db_MySql)' == '' ">C:\Users\erwin\.nuget\packages\linq2db.mysql\4.4.0</Pkglinq2db_MySql>
+    <Pkglinq2db_SQLite Condition=" '$(Pkglinq2db_SQLite)' == '' ">/root/.nuget/packages/linq2db.sqlite/4.4.0</Pkglinq2db_SQLite>
+    <Pkglinq2db_PostgreSQL Condition=" '$(Pkglinq2db_PostgreSQL)' == '' ">/root/.nuget/packages/linq2db.postgresql/4.4.0</Pkglinq2db_PostgreSQL>
+    <Pkglinq2db_MySql Condition=" '$(Pkglinq2db_MySql)' == '' ">/root/.nuget/packages/linq2db.mysql/4.4.0</Pkglinq2db_MySql>
   </PropertyGroup>
 </Project>

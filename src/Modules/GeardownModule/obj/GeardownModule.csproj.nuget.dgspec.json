@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "J:\\Dev\\EvoSC-sharp\\src\\Modules\\GeardownModule\\GeardownModule.csproj": {}
+    "/var/containers/EvoSC-sharp/src/Modules/GeardownModule/GeardownModule.csproj": {}
   },
   "projects": {
-    "J:\\Dev\\EvoSC-sharp\\src\\EvoSC.Commands\\EvoSC.Commands.csproj": {
+    "/var/containers/EvoSC-sharp/src/EvoSC.Commands/EvoSC.Commands.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "J:\\Dev\\EvoSC-sharp\\src\\EvoSC.Commands\\EvoSC.Commands.csproj",
+        "projectUniqueName": "/var/containers/EvoSC-sharp/src/EvoSC.Commands/EvoSC.Commands.csproj",
         "projectName": "EvoSC.Commands",
-        "projectPath": "J:\\Dev\\EvoSC-sharp\\src\\EvoSC.Commands\\EvoSC.Commands.csproj",
-        "packagesPath": "C:\\Users\\erwin\\.nuget\\packages\\",
-        "outputPath": "J:\\Dev\\EvoSC-sharp\\src\\EvoSC.Commands\\obj\\",
+        "projectPath": "/var/containers/EvoSC-sharp/src/EvoSC.Commands/EvoSC.Commands.csproj",
+        "packagesPath": "/root/.nuget/packages/",
+        "outputPath": "/var/containers/EvoSC-sharp/src/EvoSC.Commands/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\erwin\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/root/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -26,8 +26,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "J:\\Dev\\EvoSC-sharp\\src\\EvoSC.Common\\EvoSC.Common.csproj": {
-                "projectPath": "J:\\Dev\\EvoSC-sharp\\src\\EvoSC.Common\\EvoSC.Common.csproj"
+              "/var/containers/EvoSC-sharp/src/EvoSC.Common/EvoSC.Common.csproj": {
+                "projectPath": "/var/containers/EvoSC-sharp/src/EvoSC.Common/EvoSC.Common.csproj"
               }
             }
           }
@@ -63,21 +63,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "J:\\Dev\\EvoSC-sharp\\src\\EvoSC.Common\\EvoSC.Common.csproj": {
+    "/var/containers/EvoSC-sharp/src/EvoSC.Common/EvoSC.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "J:\\Dev\\EvoSC-sharp\\src\\EvoSC.Common\\EvoSC.Common.csproj",
+        "projectUniqueName": "/var/containers/EvoSC-sharp/src/EvoSC.Common/EvoSC.Common.csproj",
         "projectName": "EvoSC.Common",
-        "projectPath": "J:\\Dev\\EvoSC-sharp\\src\\EvoSC.Common\\EvoSC.Common.csproj",
-        "packagesPath": "C:\\Users\\erwin\\.nuget\\packages\\",
-        "outputPath": "J:\\Dev\\EvoSC-sharp\\src\\EvoSC.Common\\obj\\",
+        "projectPath": "/var/containers/EvoSC-sharp/src/EvoSC.Common/EvoSC.Common.csproj",
+        "packagesPath": "/root/.nuget/packages/",
+        "outputPath": "/var/containers/EvoSC-sharp/src/EvoSC.Common/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\erwin\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/root/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -178,21 +178,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "J:\\Dev\\EvoSC-sharp\\src\\EvoSC.Modules\\EvoSC.Modules.csproj": {
+    "/var/containers/EvoSC-sharp/src/EvoSC.Modules/EvoSC.Modules.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "J:\\Dev\\EvoSC-sharp\\src\\EvoSC.Modules\\EvoSC.Modules.csproj",
+        "projectUniqueName": "/var/containers/EvoSC-sharp/src/EvoSC.Modules/EvoSC.Modules.csproj",
         "projectName": "EvoSC.Modules",
-        "projectPath": "J:\\Dev\\EvoSC-sharp\\src\\EvoSC.Modules\\EvoSC.Modules.csproj",
-        "packagesPath": "C:\\Users\\erwin\\.nuget\\packages\\",
-        "outputPath": "J:\\Dev\\EvoSC-sharp\\src\\EvoSC.Modules\\obj\\",
+        "projectPath": "/var/containers/EvoSC-sharp/src/EvoSC.Modules/EvoSC.Modules.csproj",
+        "packagesPath": "/root/.nuget/packages/",
+        "outputPath": "/var/containers/EvoSC-sharp/src/EvoSC.Modules/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\erwin\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/root/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -204,11 +204,11 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "J:\\Dev\\EvoSC-sharp\\src\\EvoSC.Commands\\EvoSC.Commands.csproj": {
-                "projectPath": "J:\\Dev\\EvoSC-sharp\\src\\EvoSC.Commands\\EvoSC.Commands.csproj"
+              "/var/containers/EvoSC-sharp/src/EvoSC.Commands/EvoSC.Commands.csproj": {
+                "projectPath": "/var/containers/EvoSC-sharp/src/EvoSC.Commands/EvoSC.Commands.csproj"
               },
-              "J:\\Dev\\EvoSC-sharp\\src\\EvoSC.Common\\EvoSC.Common.csproj": {
-                "projectPath": "J:\\Dev\\EvoSC-sharp\\src\\EvoSC.Common\\EvoSC.Common.csproj"
+              "/var/containers/EvoSC-sharp/src/EvoSC.Common/EvoSC.Common.csproj": {
+                "projectPath": "/var/containers/EvoSC-sharp/src/EvoSC.Common/EvoSC.Common.csproj"
               }
             }
           }
@@ -244,21 +244,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "J:\\Dev\\EvoSC-sharp\\src\\Modules\\GeardownModule\\GeardownModule.csproj": {
+    "/var/containers/EvoSC-sharp/src/Modules/GeardownModule/GeardownModule.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "J:\\Dev\\EvoSC-sharp\\src\\Modules\\GeardownModule\\GeardownModule.csproj",
+        "projectUniqueName": "/var/containers/EvoSC-sharp/src/Modules/GeardownModule/GeardownModule.csproj",
         "projectName": "GeardownModule",
-        "projectPath": "J:\\Dev\\EvoSC-sharp\\src\\Modules\\GeardownModule\\GeardownModule.csproj",
-        "packagesPath": "C:\\Users\\erwin\\.nuget\\packages\\",
-        "outputPath": "J:\\Dev\\EvoSC-sharp\\src\\Modules\\GeardownModule\\obj\\",
+        "projectPath": "/var/containers/EvoSC-sharp/src/Modules/GeardownModule/GeardownModule.csproj",
+        "packagesPath": "/root/.nuget/packages/",
+        "outputPath": "/var/containers/EvoSC-sharp/src/Modules/GeardownModule/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\erwin\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/root/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -270,11 +270,11 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "J:\\Dev\\EvoSC-sharp\\src\\EvoSC.Modules\\EvoSC.Modules.csproj": {
-                "projectPath": "J:\\Dev\\EvoSC-sharp\\src\\EvoSC.Modules\\EvoSC.Modules.csproj"
+              "/var/containers/EvoSC-sharp/src/EvoSC.Modules/EvoSC.Modules.csproj": {
+                "projectPath": "/var/containers/EvoSC-sharp/src/EvoSC.Modules/EvoSC.Modules.csproj"
               },
-              "J:\\Dev\\EvoSC-sharp\\src\\Modules\\MapsModule\\MapsModule.csproj": {
-                "projectPath": "J:\\Dev\\EvoSC-sharp\\src\\Modules\\MapsModule\\MapsModule.csproj"
+              "/var/containers/EvoSC-sharp/src/Modules/MapsModule/MapsModule.csproj": {
+                "projectPath": "/var/containers/EvoSC-sharp/src/Modules/MapsModule/MapsModule.csproj"
               }
             }
           }
@@ -304,21 +304,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "J:\\Dev\\EvoSC-sharp\\src\\Modules\\MapsModule\\MapsModule.csproj": {
+    "/var/containers/EvoSC-sharp/src/Modules/MapsModule/MapsModule.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "J:\\Dev\\EvoSC-sharp\\src\\Modules\\MapsModule\\MapsModule.csproj",
+        "projectUniqueName": "/var/containers/EvoSC-sharp/src/Modules/MapsModule/MapsModule.csproj",
         "projectName": "MapsModule",
-        "projectPath": "J:\\Dev\\EvoSC-sharp\\src\\Modules\\MapsModule\\MapsModule.csproj",
-        "packagesPath": "C:\\Users\\erwin\\.nuget\\packages\\",
-        "outputPath": "J:\\Dev\\EvoSC-sharp\\src\\Modules\\MapsModule\\obj\\",
+        "projectPath": "/var/containers/EvoSC-sharp/src/Modules/MapsModule/MapsModule.csproj",
+        "packagesPath": "/root/.nuget/packages/",
+        "outputPath": "/var/containers/EvoSC-sharp/src/Modules/MapsModule/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\erwin\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/root/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -330,8 +330,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "J:\\Dev\\EvoSC-sharp\\src\\EvoSC.Modules\\EvoSC.Modules.csproj": {
-                "projectPath": "J:\\Dev\\EvoSC-sharp\\src\\EvoSC.Modules\\EvoSC.Modules.csproj"
+              "/var/containers/EvoSC-sharp/src/EvoSC.Modules/EvoSC.Modules.csproj": {
+                "projectPath": "/var/containers/EvoSC-sharp/src/EvoSC.Modules/EvoSC.Modules.csproj"
               }
             }
           }
@@ -367,7 +367,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
         }
       }
     }

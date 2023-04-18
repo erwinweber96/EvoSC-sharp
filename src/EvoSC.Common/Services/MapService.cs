@@ -46,9 +46,9 @@ public class MapService : IMapService
         }
 
         var fileName = $"{mapMetadata.MapName}.Map.Gbx";
-        var filePath = Path.Combine(_config.Path.Maps, "/EvoSC");
+        var filePath = Path.Combine(_config.Path.Maps, fileName);
 
-        await SaveMapFileAsync(mapFile, filePath, fileName);
+        await SaveMapFileAsync(mapFile, _config.Path.Maps, fileName);
 
         var playerId = PlayerUtils.IsAccountId(mapMetadata.AuthorId)
             ? mapMetadata.AuthorId
@@ -86,7 +86,7 @@ public class MapService : IMapService
             }
         }
 
-        await _serverClient.Remote.InsertMapAsync($"EvoSC/{fileName}");
+        //await _serverClient.Remote.InsertMapAsync(filePath);
 
         return map;
     }
@@ -156,6 +156,10 @@ public class MapService : IMapService
 
     private async Task SaveMapFileAsync(Stream mapStream, string filePath, string fileName)
     {
+        System.Console.WriteLine(filePath);
+        System.Console.WriteLine(fileName);
+        System.Console.WriteLine(Path.Combine(filePath, $"{fileName}"));
+
         try
         {
             if (!Directory.Exists(filePath))
@@ -163,7 +167,7 @@ public class MapService : IMapService
                 Directory.CreateDirectory(filePath);
             }
 
-            var fileStream = File.Create(Path.Combine(filePath, $"/{fileName}"));
+            var fileStream = File.Create(Path.Combine(filePath, $"{fileName}"));
             await mapStream.CopyToAsync(fileStream);
             fileStream.Close();
         }

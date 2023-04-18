@@ -8,4 +8,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = EvoSC.Modules.Official.GeardownModule
-build_property.ProjectDir = j:\Dev\EvoSC-sharp\src\Modules\GeardownModule\
+build_property.ProjectDir = /var/containers/EvoSC-sharp/src/Modules/GeardownModule/

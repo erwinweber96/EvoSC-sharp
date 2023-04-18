@@ -66,6 +66,7 @@ public class GeardownController : EvoScController<PlayerInteractionContext>
         }
 
         var maps = new IMap[]{};
+        IMap? map = null;
 
         foreach (MapPoolOrder mapPoolOrder in match.map_pool_orders)
         {
@@ -78,9 +79,15 @@ public class GeardownController : EvoScController<PlayerInteractionContext>
                 continue;
             }
 
-            IMap? map = await _mapService.FindAndDownloadMapAsync(mapPoolOrder.mx_map_id ?? 0, null, Context.Player);
+            try {
+                map = await _mapService.FindAndDownloadMapAsync(mapPoolOrder.mx_map_id ?? 0, null, Context.Player);
+            } catch (Exception) {
+                await _server.SendChatMessageAsync("Error: Could not download map.", Context.Player);
+                continue;
+            }
 
             if (map == null) {
+                System.Console.WriteLine("Map is null.");
                 continue;
             }
 
@@ -89,7 +96,7 @@ public class GeardownController : EvoScController<PlayerInteractionContext>
 
         await _matchSettings.CreateMatchSettingsAsync("geardown", builder => {
             builder
-                .AddMaps(maps)
+                .AddMap(map)
                 .WithMode(modeScriptName)                
                 .WithModeSettings(modeSettings =>
                     {

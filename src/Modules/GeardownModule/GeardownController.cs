@@ -10,6 +10,7 @@ using EvoSC.Common.Interfaces.Services;
 using EvoSC.Common.Util.MatchSettings;
 using EvoSC.Common.Util.ServerUtils;
 using EvoSC.Modules.Official.GeardownModule.Models;
+using EvoSC.Modules.Official.GeardownModule.Services;
 using EvoSC.Modules.Official.GeardownModule.Repositories;
 using EvoSC.Modules.Official.Maps.Services;
 
@@ -25,11 +26,13 @@ public class GeardownController : EvoScController<PlayerInteractionContext>
     private readonly IMapRepository _mapRepo;
     private readonly IMatchSettingsService _matchSettings;
     private readonly MatchRepository _matchRepository;
-    private readonly MxMapService _mapService;
+    private readonly IMapService _mapService;
+    private readonly GeardownMapService _geardownMapService;
 
     public GeardownController(IChatCommandManager cmds, IServerClient server,
         IChatCommandManager chatCommands, IPermissionManager permissions, IPermissionRepository permRepo,
-        IMapRepository mapRepo, IMatchSettingsService matchSettings, MatchRepository matchRepository, MxMapService mapService)
+        IMapRepository mapRepo, IMatchSettingsService matchSettings, MatchRepository matchRepository, IMapService mapService,
+        GeardownMapService geardownMapService)
     {
         _server = server;
         _chatCommands = chatCommands;
@@ -39,6 +42,7 @@ public class GeardownController : EvoScController<PlayerInteractionContext>
         _matchSettings = matchSettings;
         _matchRepository = matchRepository;
         _mapService = mapService;
+        _geardownMapService = geardownMapService;
     }
 
     [ChatCommand("geardown_init", "Init match from Geardown.gg using a match token.")]
@@ -46,74 +50,104 @@ public class GeardownController : EvoScController<PlayerInteractionContext>
     {
         Match match = await _matchRepository.getMatchDataByToken(matchToken);
 
-        if (match.formats == null || match.formats.Count() == 0) {
+        if (match.formats == null || match.formats.Count() == 0)
+        {
             await _server.SendChatMessageAsync("Error: Please add a format to the match on geardown.gg", Context.Player);
             return;
         }
 
         Format format = match.formats[0];
 
-        if (format.match_settings == null || format.match_settings.Count() == 0) {
+        if (format.match_settings == null || format.match_settings.Count() == 0)
+        {
             await _server.SendChatMessageAsync("Error: The match format does not have any match settings. Configure them in the formats menu on the geardown event page.", Context.Player);
             return;
         }
 
         DefaultModeScriptName modeScriptName = this.getModeScriptByFormatType(format.type_id ?? FormatType.OTHER);
 
-        if (match.map_pool_orders == null || match.map_pool_orders.Count() == 0) {
+        if (match.map_pool_orders == null || match.map_pool_orders.Count() == 0)
+        {
             await _server.SendChatMessageAsync("Error: The match does not have any map pool orders. Configure the map pool orders in the geardown match page.", Context.Player);
             return;
         }
 
-        var maps = new IMap[]{};
+        var maps = new IMap[] { };
         IMap? map = null;
 
-        foreach (MapPoolOrder mapPoolOrder in match.map_pool_orders)
+        await _matchSettings.CreateMatchSettingsAsync("geardown", async builder =>
         {
-            //TODO: order by mapOrder
-            if (mapPoolOrder.order == 0) {
-                continue;
+            foreach (MapPoolOrder mapPoolOrder in match.map_pool_orders)
+            {
+                //TODO: order by mapOrder
+                if (mapPoolOrder.order == 0)
+                {
+                    continue;
+                }
+
+                if (mapPoolOrder.map_pool_id == null)
+                {
+                    continue;
+                }
+
+                var metadata = await _geardownMapService.getMap(mapPoolOrder.mx_map_id ?? 0, null);
+
+                if (metadata == null)
+                {
+                    continue;
+                }
+
+                //check if already exists
+                map = await _mapService.GetMapByUidAsync(metadata.MapUid);
+
+                //if exists, just add to list
+                if (map == null) {
+                    try
+                    {
+                        var mapStream = await _geardownMapService.FindAndDownloadMapAsync(mapPoolOrder.mx_map_id ?? 0, null, Context.Player);
+                        
+                        if (mapStream == null) {
+                            continue;
+                        }
+
+                        var map = await _mapService.AddMapAsync(mapStream);
+                    }
+                    catch (Exception)
+                    {
+                        await _server.SendChatMessageAsync("Error: Could not download map.", Context.Player);
+                        continue;
+                    }
+                }
+
+                if (map == null) {
+                    continue;
+                }
+
+                builder.AddMap(map);                
             }
 
-            if (mapPoolOrder.map_pool_id == null) {
-                continue;
-            }
-
-            try {
-                map = await _mapService.FindAndDownloadMapAsync(mapPoolOrder.mx_map_id ?? 0, null, Context.Player);
-            } catch (Exception) {
-                await _server.SendChatMessageAsync("Error: Could not download map.", Context.Player);
-                continue;
-            }
-
-            if (map == null) {
-                System.Console.WriteLine("Map is null.");
-                continue;
-            }
-
-            maps.Append(map);
-        }
-
-        await _matchSettings.CreateMatchSettingsAsync("geardown", builder => {
             builder
-                .AddMap(map)
-                .WithMode(modeScriptName)                
+                .WithMode(modeScriptName)
                 .WithModeSettings(modeSettings =>
                     {
                         foreach (var matchSetting in format.match_settings)
                         {
-                            if (matchSetting.key == null) {
-                                continue;                
+                            if (matchSetting.key == null)
+                            {
+                                continue;
                             }
 
                             int valueAsNumber = 0;
                             bool result = int.TryParse(matchSetting.value, out valueAsNumber);
 
-                            if (result) {
+                            if (result)
+                            {
                                 modeSettings[matchSetting.key] = valueAsNumber;
-                            } else {
+                            }
+                            else
+                            {
                                 modeSettings[matchSetting.key] = matchSetting.value;
-                            }                            
+                            }
                         }
                     });
         });
@@ -124,7 +158,8 @@ public class GeardownController : EvoScController<PlayerInteractionContext>
 
     private DefaultModeScriptName getModeScriptByFormatType(FormatType formatType)
     {
-        switch (formatType) {
+        switch (formatType)
+        {
             case FormatType.TIME_ATTACK:
                 return DefaultModeScriptName.TimeAttack;
             case FormatType.CUP:

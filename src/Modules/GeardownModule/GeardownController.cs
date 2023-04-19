@@ -72,61 +72,62 @@ public class GeardownController : EvoScController<PlayerInteractionContext>
             return;
         }
 
-        var maps = new IMap[] { };
+        var maps = new List<IMap> {};
         IMap? map = null;
 
-        await _matchSettings.CreateMatchSettingsAsync("geardown", async builder =>
+        foreach (MapPoolOrder mapPoolOrder in match.map_pool_orders)
         {
-            foreach (MapPoolOrder mapPoolOrder in match.map_pool_orders)
+            //TODO: order by mapOrder
+            if (mapPoolOrder.order == 0)
             {
-                //TODO: order by mapOrder
-                if (mapPoolOrder.order == 0)
-                {
-                    continue;
-                }
-
-                if (mapPoolOrder.map_pool_id == null)
-                {
-                    continue;
-                }
-
-                var metadata = await _geardownMapService.getMap(mapPoolOrder.mx_map_id ?? 0, null);
-
-                if (metadata == null)
-                {
-                    continue;
-                }
-
-                //check if already exists
-                map = await _mapService.GetMapByUidAsync(metadata.MapUid);
-
-                //if exists, just add to list
-                if (map == null) {
-                    try
-                    {
-                        var mapStream = await _geardownMapService.FindAndDownloadMapAsync(mapPoolOrder.mx_map_id ?? 0, null, Context.Player);
-                        
-                        if (mapStream == null) {
-                            continue;
-                        }
-
-                        var map = await _mapService.AddMapAsync(mapStream);
-                    }
-                    catch (Exception)
-                    {
-                        await _server.SendChatMessageAsync("Error: Could not download map.", Context.Player);
-                        continue;
-                    }
-                }
-
-                if (map == null) {
-                    continue;
-                }
-
-                builder.AddMap(map);                
+                continue;
             }
 
+            if (mapPoolOrder.map_pool_id == null)
+            {
+                continue;
+            }
+
+            var metadata = await _geardownMapService.getMap(mapPoolOrder.mx_map_id ?? 0, null);
+
+            if (metadata == null)
+            {
+                continue;
+            }
+
+            //check if already exists
+            map = await _mapService.GetMapByUidAsync(metadata.MapUid);
+
+            //if exists, just add to list
+            if (map == null) {
+                try
+                {
+                    var mapStream = await _geardownMapService.FindAndDownloadMapAsync(mapPoolOrder.mx_map_id ?? 0, null, Context.Player);
+                    
+                    if (mapStream == null) {
+                        continue;
+                    }
+
+                    map = await _mapService.AddMapAsync(mapStream);
+                }
+                catch (Exception)
+                {
+                    await _server.SendChatMessageAsync("Error: Could not download map.", Context.Player);
+                    continue;
+                }
+            }
+
+            if (map == null) {
+                continue;
+            } 
+
+            maps.Add(map);
+        }
+
+        await _matchSettings.CreateMatchSettingsAsync("geardown", builder =>
+        {
             builder
+                .AddMaps(maps)
                 .WithMode(modeScriptName)
                 .WithModeSettings(modeSettings =>
                     {
@@ -151,6 +152,8 @@ public class GeardownController : EvoScController<PlayerInteractionContext>
                         }
                     });
         });
+
+        
 
         await _matchSettings.LoadMatchSettingsAsync("geardown");
         await _server.Remote.NextMapAsync();

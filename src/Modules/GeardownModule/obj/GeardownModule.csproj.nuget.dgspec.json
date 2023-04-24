@@ -4,6 +4,69 @@
     "/var/containers/EvoSC-sharp/src/Modules/GeardownModule/GeardownModule.csproj": {}
   },
   "projects": {
+    "/var/containers/EvoSC-sharp/external/ManiaTemplates/src/ManiaTemplates/ManiaTemplates.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/var/containers/EvoSC-sharp/external/ManiaTemplates/src/ManiaTemplates/ManiaTemplates.csproj",
+        "projectName": "ManiaTemplates",
+        "projectPath": "/var/containers/EvoSC-sharp/external/ManiaTemplates/src/ManiaTemplates/ManiaTemplates.csproj",
+        "packagesPath": "/root/.nuget/packages/",
+        "outputPath": "/var/containers/EvoSC-sharp/external/ManiaTemplates/src/ManiaTemplates/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/root/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.CodeAnalysis.CSharp.Scripting": {
+              "target": "Package",
+              "version": "[4.4.0, )"
+            },
+            "Mono.TextTemplating": {
+              "target": "Package",
+              "version": "[2.3.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "/var/containers/EvoSC-sharp/src/EvoSC.Commands/EvoSC.Commands.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -119,7 +182,7 @@
             },
             "GbxRemote.Net": {
               "target": "Package",
-              "version": "[3.0.2, )"
+              "version": "[4.0.0, )"
             },
             "Humanizer.Core": {
               "target": "Package",
@@ -182,6 +245,66 @@
         }
       }
     },
+    "/var/containers/EvoSC-sharp/src/EvoSC.Manialinks/EvoSC.Manialinks.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/var/containers/EvoSC-sharp/src/EvoSC.Manialinks/EvoSC.Manialinks.csproj",
+        "projectName": "EvoSC.Manialinks",
+        "projectPath": "/var/containers/EvoSC-sharp/src/EvoSC.Manialinks/EvoSC.Manialinks.csproj",
+        "packagesPath": "/root/.nuget/packages/",
+        "outputPath": "/var/containers/EvoSC-sharp/src/EvoSC.Manialinks/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/root/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "/var/containers/EvoSC-sharp/external/ManiaTemplates/src/ManiaTemplates/ManiaTemplates.csproj": {
+                "projectPath": "/var/containers/EvoSC-sharp/external/ManiaTemplates/src/ManiaTemplates/ManiaTemplates.csproj"
+              },
+              "/var/containers/EvoSC-sharp/src/EvoSC.Common/EvoSC.Common.csproj": {
+                "projectPath": "/var/containers/EvoSC-sharp/src/EvoSC.Common/EvoSC.Common.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "/var/containers/EvoSC-sharp/src/EvoSC.Modules/EvoSC.Modules.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -209,6 +332,9 @@
               },
               "/var/containers/EvoSC-sharp/src/EvoSC.Common/EvoSC.Common.csproj": {
                 "projectPath": "/var/containers/EvoSC-sharp/src/EvoSC.Common/EvoSC.Common.csproj"
+              },
+              "/var/containers/EvoSC-sharp/src/EvoSC.Manialinks/EvoSC.Manialinks.csproj": {
+                "projectPath": "/var/containers/EvoSC-sharp/src/EvoSC.Manialinks/EvoSC.Manialinks.csproj"
               }
             }
           }

@@ -4,10 +4,13 @@ using EvoSC.Modules.Official.GeardownModule.Models;
 using EvoSC.Modules.Official.GeardownModule;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using EvoSC.Common.Remote.EventArgsModels;
 
 public class MatchRepository
 {
   private GeardownHttpClient _client;
+
+  private static string s_matchToken = "";
 
   public MatchRepository(GeardownHttpClient geardownHttpClient)
   {
@@ -79,8 +82,47 @@ public class MatchRepository
 
   public async Task<Match> getMatchDataByToken(string matchToken)
   {
+    s_matchToken = matchToken;
     String response = await _client.Get("/api/matches/evo_token/"+matchToken, null);
     System.Console.WriteLine(response);
     return JsonConvert.DeserializeObject<Match>(response);
+  }
+
+  public void OnEndRound(ScoresEventArgs args)
+  {
+    if (s_matchToken == "") {
+      return;
+    }
+
+    OnEndRoundRequest request = new OnEndRoundRequest();
+    request.matchToken = s_matchToken;
+    request.eventData = args;
+
+    _client.Post("/v1/matches/on_end_round/", request);
+  }
+
+  public void OnEndMap()
+  {
+    if (s_matchToken == "") {
+      return;
+    } 
+
+    OnEndMapRequest request = new OnEndMapRequest();
+    request.matchToken = s_matchToken;
+
+    _client.Post("/v1/matches/on_end_map/", request);
+  }
+
+  public void OnStartMatch(string join)
+  {
+    if (s_matchToken == "") {
+      return;
+    } 
+
+    OnStartMatchRequest request = new OnStartMatchRequest();
+    request.matchToken = s_matchToken;
+    request.join = join;
+
+    _client.Post("/v1/matches/on_start_match/", request);
   }
 }

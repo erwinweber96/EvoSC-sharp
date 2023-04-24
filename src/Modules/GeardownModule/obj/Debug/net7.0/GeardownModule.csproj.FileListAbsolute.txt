@@ -36,3 +36,7 @@ J:/Dev/EvoSC-sharp/src/Modules/GeardownModule/bin/Debug/net7.0/MapsModule.pdb
 /var/containers/EvoSC-sharp/src/Modules/GeardownModule/obj/Debug/net7.0/refint/GeardownModule.dll
 /var/containers/EvoSC-sharp/src/Modules/GeardownModule/obj/Debug/net7.0/GeardownModule.pdb
 /var/containers/EvoSC-sharp/src/Modules/GeardownModule/obj/Debug/net7.0/ref/GeardownModule.dll
+/var/containers/EvoSC-sharp/src/Modules/GeardownModule/bin/Debug/net7.0/EvoSC.Manialinks.dll
+/var/containers/EvoSC-sharp/src/Modules/GeardownModule/bin/Debug/net7.0/ManiaTemplates.dll
+/var/containers/EvoSC-sharp/src/Modules/GeardownModule/bin/Debug/net7.0/EvoSC.Manialinks.pdb
+/var/containers/EvoSC-sharp/src/Modules/GeardownModule/bin/Debug/net7.0/ManiaTemplates.pdb

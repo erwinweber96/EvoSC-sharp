@@ -43,6 +43,7 @@ public class GeardownController : EvoScController<PlayerInteractionContext>
         _matchRepository = matchRepository;
         _mapService = mapService;
         _geardownMapService = geardownMapService;
+        _matchRepository = matchRepository;
     }
 
     [ChatCommand("geardown_init", "Init match from Geardown.gg using a match token.")]
@@ -124,39 +125,42 @@ public class GeardownController : EvoScController<PlayerInteractionContext>
             maps.Add(map);
         }
 
+        var rand = new Random();
+        var shuffledList = maps.OrderBy(_ => rand.Next()).ToList();
         await _matchSettings.CreateMatchSettingsAsync("geardown", builder =>
-        {
-            builder
-                .AddMaps(maps)
-                .WithMode(modeScriptName)
-                .WithModeSettings(modeSettings =>
-                    {
-                        foreach (var matchSetting in format.match_settings)
+            {
+                builder
+                    .AddMaps(shuffledList)
+                    .WithMode(modeScriptName)
+                    .WithModeSettings(modeSettings =>
                         {
-                            if (matchSetting.key == null)
+                            foreach (var matchSetting in format.match_settings)
                             {
-                                continue;
-                            }
+                                if (matchSetting.key == null)
+                                {
+                                    continue;
+                                }
 
-                            int valueAsNumber = 0;
-                            bool result = int.TryParse(matchSetting.value, out valueAsNumber);
+                                int valueAsNumber = 0;
+                                bool result = int.TryParse(matchSetting.value, out valueAsNumber);
 
-                            if (result)
-                            {
-                                modeSettings[matchSetting.key] = valueAsNumber;
+                                if (result)
+                                {
+                                    modeSettings[matchSetting.key] = valueAsNumber;
+                                }
+                                else
+                                {
+                                    modeSettings[matchSetting.key] = matchSetting.value;
+                                }
                             }
-                            else
-                            {
-                                modeSettings[matchSetting.key] = matchSetting.value;
-                            }
-                        }
-                    });
-        });
-
-        
+                        });
+            }
+        );
 
         await _matchSettings.LoadMatchSettingsAsync("geardown");
-        await _server.Remote.NextMapAsync();
+        await _server.Remote.NextMapAsync(); //TODO: needs logic
+        string serverName = await _server.Remote.GetServerNameAsync();
+        _matchRepository.OnStartMatch(serverName);
     }
 
     private DefaultModeScriptName getModeScriptByFormatType(FormatType formatType)

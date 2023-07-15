@@ -7,6 +7,7 @@ using EvoSC.Common.Remote.EventArgsModels;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using EvoSC.Modules.Official.GeardownModule.Repositories;
+using EvoSC.Common.Interfaces;
 
 namespace EvoSC.Modules.Official.GeardownModule;
 
@@ -16,15 +17,21 @@ public class GeardownEventController : EvoScController<EventControllerContext>
     private readonly ILogger<GeardownEventController> _logger;
 
     private MatchRepository _matchRepository;
+
+    private IGeardownSettings _geardownSettings;
+
+    private readonly IServerClient _server;
     
-    public GeardownEventController(ILogger<GeardownEventController> logger, MatchRepository matchRepository)
+    public GeardownEventController(ILogger<GeardownEventController> logger, MatchRepository matchRepository, IGeardownSettings geardownSettings, IServerClient server)
     {
         _logger = logger;
         _matchRepository = matchRepository;
+        _geardownSettings = geardownSettings;
+        _server = server;
     }
     
     [Subscribe(ModeScriptEvent.Scores)]
-    public Task OnScores(object sender, ScoresEventArgs args)
+    public async Task OnScores(object sender, ScoresEventArgs args)
     {
         var json = JsonConvert.SerializeObject(args);
         System.Console.WriteLine(json);
@@ -32,7 +39,7 @@ public class GeardownEventController : EvoScController<EventControllerContext>
         string? section = args.Section;
 
         if (section == null) {
-            return Task.CompletedTask;
+            return; // Task.CompletedTask;
         }
 
         switch(section) {
@@ -42,14 +49,22 @@ public class GeardownEventController : EvoScController<EventControllerContext>
                 break;
             case "EndMap":
                 System.Console.WriteLine("End Map Case");
-                //_matchRepository.OnEndMap(); TODO: fix for case when map ends before warmup starts
+                break;
+            case "EndMatch":
+                System.Console.WriteLine("End Match Case");
+                _matchRepository.OnEndMatch();
                 break;
             default:
                 //idk
                 break;
         }
         
+        var mapData = await _server.Remote.GetCurrentMapInfoAsync();
+
         _logger.LogInformation("Scores: {Scores}", args.ToString());
-        return Task.CompletedTask;
+        _logger.LogInformation("Current Map: {Data}", JsonConvert.SerializeObject(mapData));
+
+        return;
+        //return Task.CompletedTask;
     }
 }

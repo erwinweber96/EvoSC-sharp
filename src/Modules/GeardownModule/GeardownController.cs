@@ -28,11 +28,12 @@ public class GeardownController : EvoScController<PlayerInteractionContext>
     private readonly MatchRepository _matchRepository;
     private readonly IMapService _mapService;
     private readonly GeardownMapService _geardownMapService;
+    private IGeardownSettings _geardownSettings;
 
     public GeardownController(IChatCommandManager cmds, IServerClient server,
         IChatCommandManager chatCommands, IPermissionManager permissions, IPermissionRepository permRepo,
         IMapRepository mapRepo, IMatchSettingsService matchSettings, MatchRepository matchRepository, IMapService mapService,
-        GeardownMapService geardownMapService)
+        GeardownMapService geardownMapService, IGeardownSettings geardownSettings)
     {
         _server = server;
         _chatCommands = chatCommands;
@@ -44,11 +45,13 @@ public class GeardownController : EvoScController<PlayerInteractionContext>
         _mapService = mapService;
         _geardownMapService = geardownMapService;
         _matchRepository = matchRepository;
+        _geardownSettings = geardownSettings;
     }
 
     [ChatCommand("geardown_init", "Init match from Geardown.gg using a match token.")]
     public async Task GeardownInit(string matchToken)
     {
+        _geardownSettings.MatchBegin = false;
         Match match = await _matchRepository.getMatchDataByToken(matchToken);
 
         if (match.formats == null || match.formats.Count() == 0)
@@ -78,7 +81,6 @@ public class GeardownController : EvoScController<PlayerInteractionContext>
 
         foreach (MapPoolOrder mapPoolOrder in match.map_pool_orders)
         {
-            //TODO: order by mapOrder
             if (mapPoolOrder.order == 0)
             {
                 continue;
@@ -158,8 +160,10 @@ public class GeardownController : EvoScController<PlayerInteractionContext>
         );
 
         await _matchSettings.LoadMatchSettingsAsync("geardown");
-        await _server.Remote.NextMapAsync(); //TODO: needs logic
-        string serverName = await _server.Remote.GetServerNameAsync();
+        //await _server.Remote.NextMapAsync();
+        
+        //TODO: load from config or make sure server name is descriptive as the where it can be found.
+        string serverName = await _server.Remote.GetServerNameAsync(); 
         _matchRepository.OnStartMatch(serverName);
     }
 

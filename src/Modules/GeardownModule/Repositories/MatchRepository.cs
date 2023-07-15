@@ -68,6 +68,17 @@ public class MatchRepository
     return JsonConvert.DeserializeObject<MatchResult>(response);
   }
 
+  public async Task<MatchResult> CreateTimeResult(int matchId, string result, string nickname, string mapId)
+  {
+    String response = await _client.Post("/api/matches/time_results", new object [] { 
+      new KeyValuePair<string, int>("match_id", matchId),
+      new KeyValuePair<string, string>("time", result),
+      new KeyValuePair<string, string>("nickname", nickname),
+    });
+
+    return JsonConvert.DeserializeObject<MatchResult>(response);
+  }
+
   public async Task<GameServer> AddGameServer(int matchId, string name, bool pending, string serverLink)
   {
     String response = await _client.Post("/v1/matches/game_servers", new object [] { 
@@ -101,7 +112,7 @@ public class MatchRepository
     _client.Post("/v1/matches/on_end_round/", request);
   }
 
-  public void OnEndMap()
+  public void OnEndMatch()
   {
     if (s_matchToken == "") {
       return;
@@ -111,6 +122,7 @@ public class MatchRepository
     request.matchToken = s_matchToken;
 
     _client.Post("/v1/matches/on_end_map/", request);
+    s_matchToken = "";
   }
 
   public void OnStartMatch(string join)

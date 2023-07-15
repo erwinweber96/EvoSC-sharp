@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "mhcYPt/IzPug6Hdrh+fE0j6Xtp2c1At3PkLeNwwC5G7cDUMDN/huHTyYWxdlxSGaThz/SQseSGfDCv1uTDZ2yw==",
+  "dgSpecHash": "6wZLzln3kD77MnM+6DbEBBLAPW64ybL7piOBwPNd+xpq5CkHN0amboD7yBv0c5VoY8eX4kUrYDdbUyYtWSwwkA==",
   "success": true,
   "projectFilePath": "/var/containers/EvoSC-sharp/src/Modules/GeardownModule/GeardownModule.csproj",
   "expectedPackageFiles": [
